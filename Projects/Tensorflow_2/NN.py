@@ -4,6 +4,8 @@ import pandas as pd
 import seaborn as sns
 from tensorflow import keras
 
+tf.keras.backend.clear_session()
+
 # This import registers the 3D projection, but is otherwise unused.
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
 
@@ -99,7 +101,7 @@ train_delta_s, val_delta_s, test_delta_s = split(delta_s)
 
 def build_model():
   model = keras.Sequential([
-    tf.keras.layers.Flatten(input_shape=(2, )),
+    tf.keras.layers.Flatten(input_shape=(1, 2)),
     tf.keras.layers.Dense(4, activation='relu'),
     tf.keras.layers.Dense(4, activation='relu'),
     tf.keras.layers.Dense(1)
@@ -114,6 +116,9 @@ def build_model():
 
 train_features = np.concatenate((train_acc1_x, train_delta_t), axis=1)
 val_features = np.concatenate((val_acc1_x, val_delta_t), axis=1)
+
+train_features = np.expand_dims(train_features, axis=1) # Expanding one axis to column
+val_features = np.expand_dims(val_features, axis=1) # Expanding one axis to column
 
 print("train_features info : ", type(train_features), np.shape(train_features))
 print("train_delta_s info : ", type(train_delta_s), np.shape(train_delta_s))
@@ -137,6 +142,6 @@ val_dataset = val_dataset.batch(BATCH_SIZE)
 
 model = build_model()
 
-model.fit(train_dataset, epochs=10)
+model.fit(train_dataset, epochs=5)
 
 model.evaluate(val_dataset)
