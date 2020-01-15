@@ -142,6 +142,15 @@ val_dataset = val_dataset.batch(BATCH_SIZE)
 
 model = build_model()
 
-model.fit(train_dataset, epochs=5)
+history = model.fit(train_dataset, epochs=5)
+
+#plt.semilogx(history.history["epoch"], history.history["loss"])
+#plt.axis([1e-7, 1e-4, 0, 30])
+#plt.show()
 
 model.evaluate(val_dataset)
+
+#plt.figure(figsize=(10, 6))
+#plot_series(time_valid, x_valid[:, 3])
+#plot_series(time_valid,  rnn_forecast[0:1000, :])
+#plt.show()
