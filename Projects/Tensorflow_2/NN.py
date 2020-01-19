@@ -4,12 +4,23 @@ import pandas as pd
 import seaborn as sns
 from tensorflow import keras
 
+import tensorflow_docs as tfdocs
+import tensorflow_docs.modeling
+import tensorflow_docs.plots
+from  IPython import display
+import pathlib
+import shutil
+import tempfile
+
 tf.keras.backend.clear_session()
 
 # This import registers the 3D projection, but is otherwise unused.
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
 
 from tools.data_controller import *
+
+logdir = pathlib.Path(tempfile.mkdtemp())/"tensorboard_logs"
+shutil.rmtree(logdir, ignore_errors=True)
 
 df = get_data_from_my_dataset()
 print(df.head())
@@ -25,7 +36,8 @@ time_step = original_time_step - original_time_step[0]
 delta_t = np.diff(original_time_step, axis=0)
 delta_t = delta_t / 1000 # delta_t is in milli sec. ## Converting ms to sec
 
-delta_s = abs(np.diff(original_position_x_t, axis=0))
+#delta_s = abs(np.diff(original_position_x_t, axis=0))
+delta_s = (np.diff(original_position_x_t, axis=0))
 
 # print(original_acc1_x[0:5])
 # print(original_position_x_t[0:5])
@@ -111,7 +123,7 @@ def build_model():
 
   model.compile(loss='mse',
                 optimizer=optimizer,
-                metrics=['mae', 'mse'])
+                metrics=['mae', 'mse', 'accuracy'])
   return model
 
 train_features = np.concatenate((train_acc1_x, train_delta_t), axis=1)
@@ -136,19 +148,45 @@ val_dataset = tf.data.Dataset.from_tensor_slices((val_features, val_delta_s))
 
 BATCH_SIZE = 8
 SHUFFLE_BUFFER_SIZE = 100
+EPOCHS = 50
 
 train_dataset = train_dataset.shuffle(SHUFFLE_BUFFER_SIZE).batch(BATCH_SIZE)
 val_dataset = val_dataset.batch(BATCH_SIZE)
 
 model = build_model()
 
-history = model.fit(train_dataset, epochs=5)
+history = model.fit(train_dataset, epochs=EPOCHS, validation_data=val_dataset)
+
+acc = history.history["accuracy"]
+val_acc = history.history["val_accuracy"]
+
+loss = history.history["loss"]
+val_loss = history.history["val_loss"]
+
+epochs_range = range(EPOCHS)
+
+plt.figure(figsize=(8, 8))
+plt.subplot(1, 2, 1)
+plt.plot(epochs_range, acc, label='Training Accuracy')
+plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+plt.legend(loc='lower right')
+plt.title('Training and Validation Accuracy')
+
+plt.subplot(1, 2, 2)
+plt.plot(epochs_range, loss, label='Training Loss')
+plt.plot(epochs_range, val_loss, label='Validation Loss')
+plt.legend(loc='upper right')
+plt.title('Training and Validation Loss')
+plt.show()
+
+#plotter = tfdocs.plots.HistoryPlotter(metric = 'accuracy')
+#plotter.plot(history)
 
 #plt.semilogx(history.history["epoch"], history.history["loss"])
 #plt.axis([1e-7, 1e-4, 0, 30])
 #plt.show()
 
-model.evaluate(val_dataset)
+#model.evaluate(val_dataset)
 
 #plt.figure(figsize=(10, 6))
 #plot_series(time_valid, x_valid[:, 3])
