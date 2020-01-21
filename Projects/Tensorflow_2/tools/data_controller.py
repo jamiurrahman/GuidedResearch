@@ -24,14 +24,14 @@ def get_data_from_jena_climate_dataset ():
     return df
 
 def get_data_from_my_dataset ():
-    csv_path = "./dataset/dataset.csv"
+    csv_path = "./dataset/dataset_all_sensors.csv"
 
     df = pd.read_csv(csv_path)
 
     return df
 
 def get_data_from_my_dataset_using_np ():
-    csv_path = "./dataset/dataset.csv"
+    csv_path = "./dataset/dataset_all_sensors.csv"
 
     with open(csv_path, 'r') as f:
         data = list(csv.reader(f, delimiter=','))

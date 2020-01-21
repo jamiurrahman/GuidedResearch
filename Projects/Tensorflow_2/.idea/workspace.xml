@@ -18,10 +18,13 @@
   <component name="ProjectId" id="1WJ0qou6FYusavn1Vd7Tv0UEwk7" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Machine Learning/DeepLearning/LearningTensorflow/UdacityCourse_IntroToTensorFlowForDeepLearning/Lesson3_ClassifyingImagesOfClothing" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/NN_3_Acc.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Upta\Google Drive\TUM\Semester_5\GuidedResearch\Projects\Tensorflow_2\dataset" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Upta\Google Drive\TUM\Semester_5\GuidedResearch\Projects\Tensorflow_2" />
       <recent name="C:\Users\Upta\Google Drive\TUM\Semester_5\GuidedResearch\Projects\Tensorflow_2\dataset" />
@@ -39,7 +42,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.NN">
+  <component name="RunManager" selected="Python.NN_3_Acc">
     <configuration name="Baseline" type="PythonConfigurationType" factoryName="Python">
       <module name="Tensorflow_2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,13 +113,101 @@
       <module name="Tensorflow_2" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="C:\Users\Upta\Anaconda3\envs\tensor\pythonw.exe" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Upta\Anaconda3\envs\tensorCPU\pythonw.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NN.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="NN_1_X" type="PythonConfigurationType" factoryName="Python">
+      <module name="Tensorflow_2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Upta\Anaconda3\envs\tensorCPU\pythonw.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NN_1_X.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="NN_1_Y" type="PythonConfigurationType" factoryName="Python">
+      <module name="Tensorflow_2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Upta\Anaconda3\envs\tensorCPU\pythonw.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NN_1_Y.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="NN_1_Z" type="PythonConfigurationType" factoryName="Python">
+      <module name="Tensorflow_2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Upta\Anaconda3\envs\tensorCPU\pythonw.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NN_1_Z.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="NN_3_Acc" type="PythonConfigurationType" factoryName="Python">
+      <module name="Tensorflow_2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="C:\Users\Upta\Anaconda3\envs\tensorCPU\pythonw.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NN_3_Acc.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -221,6 +312,10 @@
       <item itemvalue="Python.Baseline_GPS_Simulation_1" />
       <item itemvalue="Python.RNN" />
       <item itemvalue="Python.NN" />
+      <item itemvalue="Python.NN_1_X" />
+      <item itemvalue="Python.NN_1_Y" />
+      <item itemvalue="Python.NN_1_Z" />
+      <item itemvalue="Python.NN_3_Acc" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -243,6 +338,16 @@
       <workItem from="1579031789059" duration="253000" />
       <workItem from="1579032055333" duration="163000" />
       <workItem from="1579032230241" duration="251000" />
+      <workItem from="1579076613195" duration="374000" />
+      <workItem from="1579077000373" duration="1424000" />
+      <workItem from="1579078964575" duration="96000" />
+      <workItem from="1579079069191" duration="74000" />
+      <workItem from="1579168202992" duration="632000" />
+      <workItem from="1579168847106" duration="151000" />
+      <workItem from="1579422541763" duration="2664000" />
+      <workItem from="1579425556651" duration="2457000" />
+      <workItem from="1579590962524" duration="13030000" />
+      <workItem from="1579606331791" duration="827000" />
     </task>
     <servers />
   </component>
@@ -251,6 +356,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Tensorflow_2$Part_1___Forecast_a_univariate_time_series.coverage" NAME="Part 1 - Forecast a univariate time series Coverage Results" MODIFIED="1579029796434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Tensorflow_2$NN.coverage" NAME="NN Coverage Results" MODIFIED="1579018887226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Tensorflow_2$NN.coverage" NAME="NN Coverage Results" MODIFIED="1579595054892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

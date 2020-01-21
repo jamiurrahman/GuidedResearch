@@ -78,59 +78,70 @@ tf.random.set_seed(13)
 # and dividing by the standard deviation of each feature.
 # You could also use a tf.keras.utils.normalize method that rescales the values into a range of [0,1].
 
-def normalize(data, TRAIN_SPLIT = 5000):
+def normalize(data, TRAIN_SIZE = 5000):
+
+    # Note: The mean and standard deviation should only be computed using the training data.
+    data_train_mean = data[:TRAIN_SIZE].mean()
+    data_train_std = data[:TRAIN_SIZE].std()
+
+    return ((data - data_train_mean) / data_train_std)
+
+def denormalize(data, TRAIN_SPLIT = 5000):
 
     # Note: The mean and standard deviation should only be computed using the training data.
     data_train_mean = data[:TRAIN_SPLIT].mean()
     data_train_std = data[:TRAIN_SPLIT].std()
 
-    return ((data - data_train_mean) / data_train_std)
+    return ((data * data_train_std) + data_train_mean)
 
 original_acc1_x = np.expand_dims(original_acc1_x, axis=1) # Expanding one axis to column
 delta_t = np.expand_dims(delta_t, axis=1) # Expanding one axis to column
 delta_s = np.expand_dims(delta_s, axis=1) # Expanding one axis to column
 
 
-TRAIN_SPLIT = 5000
-VALIDATION_SPLIT = 500
-normalized_acc1_x = normalize(original_acc1_x, TRAIN_SPLIT=TRAIN_SPLIT)
-normalized_delta_t = normalize(delta_t, TRAIN_SPLIT=TRAIN_SPLIT)
+TRAIN_SIZE = int(len(delta_s) * 0.8)#5000
+VALIDATION_SIZE = int(len(delta_s) * 0.10)#500
+TEST_SIZE = int(len(delta_s) - (TRAIN_SIZE + VALIDATION_SIZE))
+normalized_acc1_x = normalize(original_acc1_x, TRAIN_SIZE=TRAIN_SIZE)
+normalized_delta_t = normalize(delta_t, TRAIN_SIZE=TRAIN_SIZE)
 
 #plot(delta_t, original_acc1_x, delta_s, "delta_t", "original_acc1_x", "delta_s")
 #plot(normalized_delta_t, normalized_acc1_x, delta_s, "normalized_delta_t", "normalized_acc1_x", "delta_s")
 
-def split(data, TRAIN_SPLIT = 5000, VALIDATION_SPLIT = 500):
-    data_train = data[:TRAIN_SPLIT]
-    data_validation = data[TRAIN_SPLIT:(TRAIN_SPLIT+VALIDATION_SPLIT)]
-    data_test = data[(TRAIN_SPLIT+VALIDATION_SPLIT):None]
+def split(data, TRAIN_SIZE = 5000, VALIDATION_SIZE = 500, TEST_SIZE = None):
+    data_train = data[:TRAIN_SIZE]
+    data_validation = data[TRAIN_SIZE:(TRAIN_SIZE + VALIDATION_SIZE)]
+    data_test = data[(TRAIN_SIZE + VALIDATION_SIZE):(TRAIN_SIZE + VALIDATION_SIZE + TEST_SIZE)]
 
-    return data_train, data_validation, data_validation
+    return data_train, data_validation, data_test
 
-train_acc1_x, val_acc1_x, test_acc1_x = split(normalized_acc1_x)
-train_delta_t, val_delta_t, test_delta_t = split(normalized_delta_t)
-train_delta_s, val_delta_s, test_delta_s = split(delta_s)
+train_acc1_x, val_acc1_x, test_acc1_x = split(normalized_acc1_x, TRAIN_SIZE = TRAIN_SIZE, VALIDATION_SIZE = VALIDATION_SIZE, TEST_SIZE = TEST_SIZE)
+train_delta_t, val_delta_t, test_delta_t = split(normalized_delta_t, TRAIN_SIZE = TRAIN_SIZE, VALIDATION_SIZE = VALIDATION_SIZE, TEST_SIZE = TEST_SIZE)
+train_delta_s, val_delta_s, test_delta_s = split(delta_s,TRAIN_SIZE = TRAIN_SIZE, VALIDATION_SIZE = VALIDATION_SIZE, TEST_SIZE = TEST_SIZE)
 
 
 def build_model():
   model = keras.Sequential([
     tf.keras.layers.Flatten(input_shape=(1, 2)),
-    tf.keras.layers.Dense(4, activation='relu'),
-    tf.keras.layers.Dense(4, activation='relu'),
+    tf.keras.layers.Dense(4, activation='tanh'),
+    tf.keras.layers.Dense(4, activation='tanh'),
     tf.keras.layers.Dense(1)
   ])
 
-  optimizer = tf.keras.optimizers.RMSprop(0.001)
+  optimizer = tf.keras.optimizers.Adam()
 
-  model.compile(loss='mse',
+  model.compile(loss='mae',
                 optimizer=optimizer,
                 metrics=['mae', 'mse', 'accuracy'])
   return model
 
 train_features = np.concatenate((train_acc1_x, train_delta_t), axis=1)
 val_features = np.concatenate((val_acc1_x, val_delta_t), axis=1)
+test_features = np.concatenate((test_acc1_x, test_delta_t), axis=1)
 
 train_features = np.expand_dims(train_features, axis=1) # Expanding one axis to column
 val_features = np.expand_dims(val_features, axis=1) # Expanding one axis to column
+test_features = np.expand_dims(test_features, axis=1) # Expanding one axis to column
 
 print("train_features info : ", type(train_features), np.shape(train_features))
 print("train_delta_s info : ", type(train_delta_s), np.shape(train_delta_s))
@@ -139,6 +150,7 @@ print("val_delta_s info : ", type(val_delta_s), np.shape(val_delta_s))
 
 train_dataset = tf.data.Dataset.from_tensor_slices((train_features, train_delta_s))
 val_dataset = tf.data.Dataset.from_tensor_slices((val_features, val_delta_s))
+test_dataset = tf.data.Dataset.from_tensor_slices((test_features, test_delta_s))
 
 # Showing train_dataset
 # for elem in train_dataset:
@@ -148,10 +160,12 @@ val_dataset = tf.data.Dataset.from_tensor_slices((val_features, val_delta_s))
 
 BATCH_SIZE = 8
 SHUFFLE_BUFFER_SIZE = 100
-EPOCHS = 50
+EPOCHS = 5
 
-train_dataset = train_dataset.shuffle(SHUFFLE_BUFFER_SIZE).batch(BATCH_SIZE)
+#train_dataset = train_dataset.shuffle(SHUFFLE_BUFFER_SIZE).batch(BATCH_SIZE)
+train_dataset = train_dataset.batch(BATCH_SIZE)
 val_dataset = val_dataset.batch(BATCH_SIZE)
+test_dataset = test_dataset.batch(BATCH_SIZE)
 
 model = build_model()
 
@@ -178,6 +192,75 @@ plt.plot(epochs_range, val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
 plt.show()
+
+# Working with Validation dataset
+val_predict_delta_s = model.predict(val_dataset)
+
+plt.plot(val_delta_t, val_delta_s.flatten(), "b.", linestyle="None", label="true")
+plt.plot(val_delta_t, val_predict_delta_s.flatten(), "r.", linestyle="None", label="prediction")
+plt.ylabel('Delta S')
+plt.xlabel('Delta Time')
+plt.legend()
+plt.title("Validation Dataset Result")
+plt.show();
+
+plt.plot(val_acc1_x, val_delta_s.flatten(), "b.", linestyle="None", label="true")
+plt.plot(val_acc1_x, val_predict_delta_s.flatten(), "r.", linestyle="None", label="prediction")
+plt.ylabel('Delta S')
+plt.xlabel('Acceleration')
+plt.legend()
+plt.title("Validation Dataset Result")
+plt.show();
+
+
+# Working with test dataset
+test_predict_delta_s = model.predict(test_dataset)
+
+plt.plot(test_delta_t, test_delta_s.flatten(), "b.", linestyle="None", label="true")
+plt.plot(test_delta_t, test_predict_delta_s.flatten(), "r.", linestyle="None", label="prediction")
+plt.ylabel('Delta S')
+plt.xlabel('Delta Time')
+plt.legend()
+plt.title("Test Dataset Result")
+plt.show();
+
+plt.plot(test_acc1_x, test_delta_s.flatten(), "b.", linestyle="None", label="true")
+plt.plot(test_acc1_x, test_predict_delta_s.flatten(), "r.", linestyle="None", label="prediction")
+plt.ylabel('Delta S')
+plt.xlabel('Acceleration')
+plt.legend()
+plt.title("Test Dataset Result")
+plt.show();
+
+# Plotting test dataset in 3d
+test_predict_delta_s = model.predict(test_dataset)
+
+fig = plt.figure()
+ax = plt.axes(projection='3d')
+ax.scatter3D(test_delta_t, test_acc1_x, test_delta_s.flatten(), color='b', cmap='Greens');
+ax.scatter3D(test_delta_t, test_acc1_x, test_predict_delta_s.flatten(), color='red', cmap='Greens');
+ax.set_xlabel('Delta Time')
+ax.set_ylabel('Acc')
+ax.set_zlabel('Delta S')
+#plt.plot(test_delta_t, test_acc1_x, test_delta_s.flatten(), "b.", linestyle="None", label="true")
+#plt.plot(test_delta_t, test_acc1_x, test_predict_delta_s.flatten(), "r.", linestyle="None", label="prediction")
+#plt.ylabel('Acc')
+#plt.xlabel('Delta Time')
+#plt.zlabel('Delta S')
+#plt.legend()
+#plt.title("Test Dataset Result")
+plt.show();
+
+
+#plt.figure(figsize=(8, 8))
+#plt.subplot(1, 2, 1)
+#plt.plot(epochs_range, acc, label='Training Accuracy')
+#plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+#plt.legend(loc='lower right')
+#plt.title('Training and Validation Accuracy')
+
+
+
 
 #plotter = tfdocs.plots.HistoryPlotter(metric = 'accuracy')
 #plotter.plot(history)
