@@ -1,0 +1,17 @@
+
+***************************************************************************************
+
+Current Model: 
+1_Ac_Func_tanh_Batch_8_Epochs_200_Loss_mse_DNN_Units_32
+Current Model Info: 
+Current_Active_Model : DNN
+Current_Save_Model : 1
+Current_Save_History : 1
+Current_Save_TensorBoard : 0
+Current_Save_Figure : 1
+Current_Activation_Function : tanh
+Current_Batch_Size : 8
+Current_Epoch : 200
+Current_Loss : mse
+Current_DNN_Units_Size : 32
+

@@ -1,0 +1,220 @@
+
+***************************************************************************************
+
+Current Model: 
+1_Ac_Func_tanh_Batch_8_Epochs_50_Loss_mae_DNN_Units_32
+Current Model Info: 
+Current_Active_Model : DNN
+Current_Save_Model : 1
+Current_Save_History : 1
+Current_Save_TensorBoard : 0
+Current_Save_Figure : 1
+Current_Activation_Function : tanh
+Current_Batch_Size : 8
+Current_Epoch : 50
+Current_Loss : mae
+Current_DNN_Units_Size : 32
+
+Time needed: 1709.5685601
+Model: "sequential_1"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten (Flatten)            (None, 25)                0         
+_________________________________________________________________
+dense (Dense)                (None, 32)                832       
+_________________________________________________________________
+dense_1 (Dense)              (None, 64)                2112      
+_________________________________________________________________
+dense_2 (Dense)              (None, 8)                 520       
+_________________________________________________________________
+dense_3 (Dense)              (None, 3)                 27        
+=================================================================
+Total params: 3,491
+Trainable params: 3,491
+Non-trainable params: 0
+_________________________________________________________________
+Total MAE Error: [0.00091579 0.000919   0.00091581]
+
+***************************************************************************************
+
+Current Model: 
+2_Ac_Func_tanh_Batch_8_Epochs_50_Loss_mae_DNN_Units_64
+Current Model Info: 
+Current_Active_Model : DNN
+Current_Save_Model : 1
+Current_Save_History : 1
+Current_Save_TensorBoard : 0
+Current_Save_Figure : 1
+Current_Activation_Function : tanh
+Current_Batch_Size : 8
+Current_Epoch : 50
+Current_Loss : mae
+Current_DNN_Units_Size : 64
+
+Time needed: 1648.1193081
+Model: "sequential_2"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_1 (Flatten)          (None, 25)                0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 64)                1664      
+_________________________________________________________________
+dense_5 (Dense)              (None, 64)                4160      
+_________________________________________________________________
+dense_6 (Dense)              (None, 8)                 520       
+_________________________________________________________________
+dense_7 (Dense)              (None, 3)                 27        
+=================================================================
+Total params: 6,371
+Trainable params: 6,371
+Non-trainable params: 0
+_________________________________________________________________
+Total MAE Error: [0.00090428 0.00090692 0.0009042 ]
+
+***************************************************************************************
+
+Current Model: 
+3_Ac_Func_tanh_Batch_8_Epochs_50_Loss_mae_DNN_Units_128
+Current Model Info: 
+Current_Active_Model : DNN
+Current_Save_Model : 1
+Current_Save_History : 1
+Current_Save_TensorBoard : 0
+Current_Save_Figure : 1
+Current_Activation_Function : tanh
+Current_Batch_Size : 8
+Current_Epoch : 50
+Current_Loss : mae
+Current_DNN_Units_Size : 128
+
+Time needed: 1666.0538136999999
+Model: "sequential_3"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_2 (Flatten)          (None, 25)                0         
+_________________________________________________________________
+dense_8 (Dense)              (None, 128)               3328      
+_________________________________________________________________
+dense_9 (Dense)              (None, 64)                8256      
+_________________________________________________________________
+dense_10 (Dense)             (None, 8)                 520       
+_________________________________________________________________
+dense_11 (Dense)             (None, 3)                 27        
+=================================================================
+Total params: 12,131
+Trainable params: 12,131
+Non-trainable params: 0
+_________________________________________________________________
+Total MAE Error: [0.00089459 0.00089723 0.0008945 ]
+
+***************************************************************************************
+
+Current Model: 
+4_Ac_Func_tanh_Batch_8_Epochs_50_Loss_mae_DNN_Units_256
+Current Model Info: 
+Current_Active_Model : DNN
+Current_Save_Model : 1
+Current_Save_History : 1
+Current_Save_TensorBoard : 0
+Current_Save_Figure : 1
+Current_Activation_Function : tanh
+Current_Batch_Size : 8
+Current_Epoch : 50
+Current_Loss : mae
+Current_DNN_Units_Size : 256
+
+Time needed: 1720.0740596000005
+Model: "sequential_4"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_3 (Flatten)          (None, 25)                0         
+_________________________________________________________________
+dense_12 (Dense)             (None, 256)               6656      
+_________________________________________________________________
+dense_13 (Dense)             (None, 64)                16448     
+_________________________________________________________________
+dense_14 (Dense)             (None, 8)                 520       
+_________________________________________________________________
+dense_15 (Dense)             (None, 3)                 27        
+=================================================================
+Total params: 23,651
+Trainable params: 23,651
+Non-trainable params: 0
+_________________________________________________________________
+Total MAE Error: [0.00085597 0.00085889 0.00085589]
+
+***************************************************************************************
+
+Current Model: 
+5_Ac_Func_tanh_Batch_8_Epochs_50_Loss_mae_DNN_Units_512
+Current Model Info: 
+Current_Active_Model : DNN
+Current_Save_Model : 1
+Current_Save_History : 1
+Current_Save_TensorBoard : 0
+Current_Save_Figure : 1
+Current_Activation_Function : tanh
+Current_Batch_Size : 8
+Current_Epoch : 50
+Current_Loss : mae
+Current_DNN_Units_Size : 512
+
+Time needed: 1819.8934151000003
+Model: "sequential_5"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_4 (Flatten)          (None, 25)                0         
+_________________________________________________________________
+dense_16 (Dense)             (None, 512)               13312     
+_________________________________________________________________
+dense_17 (Dense)             (None, 64)                32832     
+_________________________________________________________________
+dense_18 (Dense)             (None, 8)                 520       
+_________________________________________________________________
+dense_19 (Dense)             (None, 3)                 27        
+=================================================================
+Total params: 46,691
+Trainable params: 46,691
+Non-trainable params: 0
+_________________________________________________________________
+Total MAE Error: [0.00036098 0.00036569 0.00036051]
+
+***************************************************************************************
+
+Current Model: 
+6_Ac_Func_tanh_Batch_8_Epochs_50_Loss_mae_CNN_Filter_32_Kernel_3
+Current Model Info: 
+Current_Active_Model : CNN
+Current_Save_Model : 1
+Current_Save_History : 1
+Current_Save_TensorBoard : 0
+Current_Save_Figure : 1
+Current_Activation_Function : tanh
+Current_Batch_Size : 8
+Current_Epoch : 50
+Current_Loss : mae
+Current_CNN_Filter_Size : 32
+Current_CNN_Kernel_Size : 3
+
+Time needed: 1823.3988198000006
+Model: "sequential_6"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d (Conv1D)              multiple                  2432      
+_________________________________________________________________
+dense_20 (Dense)             multiple                  2112      
+_________________________________________________________________
+dense_21 (Dense)             multiple                  520       
+_________________________________________________________________
+dense_22 (Dense)             multiple                  27        
+=================================================================
+Total params: 5,091
+Trainable params: 5,091
+Non-trainable params: 0
+_________________________________________________________________

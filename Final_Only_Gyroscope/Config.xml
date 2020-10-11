@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <config>
+        <Save_Model>1</Save_Model>
+        <Save_History>1</Save_History>
+        <Save_TensorBoard>0</Save_TensorBoard>
+        <Save_Figure>1</Save_Figure>
+
+        <Activation_Functions>tanh relu LeakyRelu</Activation_Functions>
+        <Batch_Sizes>8 16 32 64 128 256 512</Batch_Sizes>
+        <Epochs>200</Epochs>
+        <Loss>mae</Loss>
+
+        <DNN>
+            <Units_Sizes>32 64 128 256 512</Units_Sizes>
+        </DNN>
+        <CNN>
+            <Filter_Sizes>32 64 128 256 512</Filter_Sizes>
+            <Kernel_Sizes>3 5 7 9</Kernel_Sizes>
+        </CNN>
+        <RNN>
+            <Units_Sizes>32 64 128 256 512</Units_Sizes>
+        </RNN>
+        <LSTM>
+            <Units_Sizes>32 64 128 256 512</Units_Sizes>
+        </LSTM>
+        <GRU>
+            <Units_Sizes>32 64 128 256 512</Units_Sizes>
+        </GRU>
+    </config>

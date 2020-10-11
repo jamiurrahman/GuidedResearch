@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <config>
+        <Save_Model>1</Save_Model>
+        <Save_History>1</Save_History>
+        <Save_TensorBoard>0</Save_TensorBoard>
+        <Save_Figure>1</Save_Figure>
+
+        <Activation_Functions>tanh</Activation_Functions>
+        <Batch_Sizes>8</Batch_Sizes>
+        <Epochs>5</Epochs>
+        <Loss>mse</Loss>
+
+        <DNN>
+            <Units_Sizes>32</Units_Sizes>
+        </DNN>
+        <CNN>
+            <Filter_Sizes>32</Filter_Sizes>
+            <Kernel_Sizes>3</Kernel_Sizes>
+        </CNN>
+        <RNN>
+            <Units_Sizes>32</Units_Sizes>
+        </RNN>
+        <LSTM>
+            <Units_Sizes>32</Units_Sizes>
+        </LSTM>
+        <GRU>
+            <Units_Sizes>32</Units_Sizes>
+        </GRU>
+    </config>
